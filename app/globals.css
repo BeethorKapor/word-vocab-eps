@@ -1,26 +1,163 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,500;0,700;1,400&family=Noto+Sans+Lao+Looped:wght@100;200;400;500;600;700;800&family=Noto+Sans+Lao:wght@200;300;400;500;600&family=Poppins:wght@200;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --main-color: rgb(12, 100, 176);
+    --bg-color: "#ff1e00";
+    --text-color: "#0a021c";
+    --primary-color: #050c9c;
+    /* --secondary-color:#794afa; */
+    --secondary-color: #f2f2f2;
+    --link-color: #0095ff;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body{
+    font-family: "Noto Sans Lao", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    background-color: var(--bg-color);
+  }
+
+/* -------------------------------------------------------Input section--------------------------------- */
+.input-container {
+    width: 100%;
+    background-color: #f5f5f5;
+  }
+  .input-container .input-wrapper {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 0.095rem solid #f2f2f2;
+    transition: border-color 0.3s; /* Add a smooth transition effect */
+  }
+  
+  .input-container .input-wrapper:focus-within,
+  .input-container .input-wrapper input:focus,
+  .input-container .input-wrapper select:focus {
+    /* Add focus selector */
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+  
+  /* Increase specificity for the label */
+  .input-container .input-wrapper .icon {
+    color: grey;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .input-container .input-wrapper input,
+  .input-container .input-wrapper select {
+    background-color: transparent;
+    font-size: 0.8rem;
+  }
+  .input-container .input-wrapper:hover .icon,
+  .input-container .input-wrapper input:focus + .icon,
+  .input-container .input-wrapper select:focus + .icon {
+    color: var(--primary-color);
+  }
+
+
+  /*  ------------------------------------------------- Pagination react-pagination --------------------------------- */
+.Pagination {
+  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  list-style: none;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.Pagination .break {
+  margin: 0 3px 0 0;
 }
+
+.Pagination .page-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.Pagination .page-link {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 28px;
+  margin: 0 0.5rem;
+  font-size: 12px;
+  color: var(--main-color);
+  background-color: var(--table-header-color);
+  border: 1px solid rgb(179, 170, 170);
+}
+
+.Pagination .page-link.prev,
+.Pagination .page-link.next {
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
+}
+
+.Pagination .page-link.prev:hover,
+.Pagination .page-link.next:hover {
+  background-color: #d8e2ff;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+.Pagination .page-link.active {
+  background-color: #d8e2ff;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+
+/*  ------------------------------------------------- Table react-table --------------------------------- */
+tbody tr td {
+  padding: 8px 16px;
+}
+
+tbody tr:hover td {
+  background-color: #e6e8ec; /* เปลี่ยนสีพื้นหลัง */
+}
+
+/* ----------------------------loader-------------------------- */
+
+.loader {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid blue;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-bottom: 4px solid #FF3D00;
+  border-left: 4px solid transparent;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
