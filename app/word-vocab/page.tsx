@@ -29,7 +29,7 @@ export default function WordVocabList() {
   const [error, setError] = useState("");
 
   const [skip, setSkip] = useState(1);
-  const limit = 50;
+  const limit = 2;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -82,8 +82,14 @@ export default function WordVocabList() {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-red-500">
-        {error}
+      <div className="flex flex-col items-center justify-center min-h-screen ">
+        <span className="text-red-500">{error}</span>
+        <Link
+          href="/"
+          className="border text-sm border-[var(--main-color)] text-[var(--main-color)] px-6 py-3 rounded-md flex items-center gap-2"
+        >
+          <MoveLeft /> ກັບຄືນ
+        </Link>
       </div>
     );
   }
@@ -121,13 +127,13 @@ export default function WordVocabList() {
         >
           {isLoading ? (
             <tr>
-              <td colSpan={6} className="text-center">
+              <td colSpan={7} className="text-center">
                 <span className="loader"></span>
               </td>
             </tr>
           ) : words?.total === 0 ? (
             <tr>
-              <td colSpan={6}>ບໍ່ມີຂໍ້ມູນຄຳສັບ</td>
+              <td colSpan={7}>ບໍ່ມີຂໍ້ມູນຄຳສັບ</td>
             </tr>
           ) : (
             words?.data?.map((word: WordListModel, index: number) => (

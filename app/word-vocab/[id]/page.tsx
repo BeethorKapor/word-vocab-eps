@@ -19,6 +19,8 @@ import { WordFormProps } from "@/types";
 
 //icons
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import Link from "next/link";
+import { MoveLeft } from "lucide-react";
 
 export default function EditWord({
   params,
@@ -114,8 +116,14 @@ export default function EditWord({
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        {error}
+      <div className="flex flex-col items-center justify-center min-h-screen ">
+        <span className="text-red-500">{error}</span>
+        <Link
+          href="/"
+          className="border text-sm border-[var(--main-color)] text-[var(--main-color)] px-6 py-3 rounded-md flex items-center gap-2"
+        >
+          <MoveLeft /> ກັບຄືນ
+        </Link>
       </div>
     );
   }

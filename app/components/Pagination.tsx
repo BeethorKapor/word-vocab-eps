@@ -23,7 +23,7 @@ const Pagination: React.FC<PaginationProps> = ({
       activeLinkClassName="active"
       onPageChange={({ selected }) => handlePageClick(selected + 1)}
       forcePage={currentPage ? currentPage - 1 : undefined}
-      pageCount={Math.ceil(totalItems / itemsPerPage)}
+      pageCount={Math.ceil(totalItems / itemsPerPage) || 1}
     />
   );
 };
