@@ -46,7 +46,7 @@ export default function KoreanToImage() {
             href="/"
             className="border text-sm border-[var(--main-color)] text-[var(--main-color)] px-6 py-3 rounded-md flex items-center gap-2"
           >
-            <MoveLeft /> ກັບຄືນ
+            <MoveLeft size={16} /> ກັບຄືນ
           </Link>
           <Link
             href="/image-to-language"
@@ -56,7 +56,7 @@ export default function KoreanToImage() {
           </Link>
         </div>
         <h1 className="mb-4 text-2xl font-bold text-center">
-          ພາສາເກົາຫຼີ → ຮູບພາບ
+          ພາສາເກົາຫຼີ → ພາສາລາວ
         </h1>
 
         {isLaoding ? (

@@ -14,13 +14,13 @@ export default function Home() {
           href="/lao-to-image"
           className="px-6 py-3 text-center text-white bg-green-500 rounded-lg"
         >
-          ພາສາລາວ → ຮູບພາບ
+          ພາສາລາວ → ພາສາເກົາຫຼີ
         </Link>
         <Link
           href="/korean-to-image"
           className="px-6 py-3 text-center text-white bg-red-500 rounded-lg"
         >
-          ພາສາເກົາຫຼີ → ຮູບພາບ
+          ພາສາເກົາຫຼີ → ພາສາລາວ
         </Link>
         <Link
           href="/word-vocab"

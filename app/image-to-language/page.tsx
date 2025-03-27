@@ -32,7 +32,7 @@ export default function ImageToLanguage() {
           href="/"
           className="border text-sm border-[var(--main-color)] text-[var(--main-color)] px-6 py-3 rounded-md flex items-center gap-2"
         >
-          <MoveLeft /> ກັບຄືນ
+          <MoveLeft size={16} /> ກັບຄືນ
         </Link>
       </div>
     );
@@ -46,7 +46,7 @@ export default function ImageToLanguage() {
             href="/"
             className="border text-sm border-[var(--main-color)] text-[var(--main-color)] px-6 py-3 rounded-md flex items-center gap-2"
           >
-            <MoveLeft /> ກັບຄືນ
+            <MoveLeft size={16} /> ກັບຄືນ
           </Link>
           <Link
             href="/lao-to-image"
