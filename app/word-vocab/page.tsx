@@ -29,7 +29,7 @@ export default function WordVocabList() {
   const [error, setError] = useState("");
 
   const [skip, setSkip] = useState(1);
-  const limit = 2;
+  const limit = 30;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -82,7 +82,7 @@ export default function WordVocabList() {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen ">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4 ">
         <span className="text-red-500">{error}</span>
         <Link
           href="/"
@@ -95,7 +95,7 @@ export default function WordVocabList() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen px-[5%] py-12 md:px-[10%] bg-[var(--bg-color)]">
+    <div className="flex flex-col min-h-screen px-[5%] py-12 md:px-[10%]">
       <div className="flex items-center justify-between mb-4">
         <Link
           href="/"
@@ -119,9 +119,9 @@ export default function WordVocabList() {
             "ລຳດັບ",
             "ຮູບພາບ",
             "ພາສາລາວ",
+            "ພາສາເກົາຫຼີ",
             "ພາສາໄທ",
             "ພາສາອັງກິດ",
-            "ພາສາເກົາຫຼີ",
             "ຈັດການ",
           ]}
         >
@@ -150,10 +150,10 @@ export default function WordVocabList() {
                     />
                   </div>
                 </td>
-                <td>{word?.lao}</td>
-                <td>{word?.thai}</td>
-                <td>{word?.english}</td>
-                <td>{word?.korean}</td>
+                <td>{word?.lao || "-"}</td>
+                <td>{word?.korean || "-"}</td>
+                <td>{word?.thai || "-"}</td>
+                <td>{word?.english || "-"}</td>
                 <td>
                   <div className="flex items-center gap-4 ">
                     <Link

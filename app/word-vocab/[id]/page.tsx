@@ -116,7 +116,7 @@ export default function EditWord({
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen ">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
         <span className="text-red-500">{error}</span>
         <Link
           href="/"
@@ -150,12 +150,12 @@ export default function EditWord({
               if (!values?.lao) {
                 errors.lao = "ກະລຸນາປ້ອນຄໍາສັບພາສາລາວ";
               }
-              if (!values?.thai) {
-                errors.thai = "ກະລຸນາປ້ອນຄໍາສັບພາສາໄທ";
-              }
-              if (!values?.english) {
-                errors.english = "ກະລຸນາປ້ອນຄໍາສັບພາສາອັງກິດ";
-              }
+              // if (!values?.thai) {
+              //   errors.thai = "ກະລຸນາປ້ອນຄໍາສັບພາສາໄທ";
+              // }
+              // if (!values?.english) {
+              //   errors.english = "ກະລຸນາປ້ອນຄໍາສັບພາສາອັງກິດ";
+              // }
               if (!values?.korean) {
                 errors.korean = "ກະລຸນາປ້ອນຄໍາສັບພາສາເກົາຫຼີ";
               }
@@ -263,10 +263,22 @@ export default function EditWord({
                         touched={touched?.lao}
                       />
                       <InputField
+                        id="korean"
+                        name="korean"
+                        type="text"
+                        label="ພາສາເກົາຫຼີ"
+                        placeholder="ປ້ອນຄໍາສັບພາສາເກົາຫຼີ"
+                        value={values?.korean}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        errors={errors?.korean}
+                        touched={touched?.korean}
+                      />
+                      <InputField
                         id="thai"
                         name="thai"
                         type="text"
-                        label="ພາສາໄທ"
+                        label="ພາສາໄທ (ບໍ່ບັງຄັບ)"
                         placeholder="ປ້ອນຄໍາສັບພາສາໄທ"
                         value={values?.thai}
                         onBlur={handleBlur}
@@ -278,25 +290,13 @@ export default function EditWord({
                         id="english"
                         name="english"
                         type="text"
-                        label="ພາສາອັງກິດ"
+                        label="ພາສາອັງກິດ (ບໍ່ບັງຄັບ)"
                         placeholder="ປ້ອນຄໍາສັບພາສາອັງກິດ"
                         value={values?.english}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         errors={errors?.english}
                         touched={touched?.english}
-                      />
-                      <InputField
-                        id="korean"
-                        name="korean"
-                        type="text"
-                        label="ພາສາເກົາຫຼີ"
-                        placeholder="ປ້ອນຄໍາສັບພາສາເກົາຫຼີ"
-                        value={values?.korean}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        errors={errors?.korean}
-                        touched={touched?.korean}
                       />
                     </div>
                   </div>

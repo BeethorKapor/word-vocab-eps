@@ -97,12 +97,12 @@ export default function AddWord() {
             if (!values?.lao) {
               errors.lao = "ກະລຸນາປ້ອນຄໍາສັບພາສາລາວ";
             }
-            if (!values?.thai) {
-              errors.thai = "ກະລຸນາປ້ອນຄໍາສັບພາສາໄທ";
-            }
-            if (!values?.english) {
-              errors.english = "ກະລຸນາປ້ອນຄໍາສັບພາສາອັງກິດ";
-            }
+            // if (!values?.thai) {
+            //   errors.thai = "ກະລຸນາປ້ອນຄໍາສັບພາສາໄທ";
+            // }
+            // if (!values?.english) {
+            //   errors.english = "ກະລຸນາປ້ອນຄໍາສັບພາສາອັງກິດ";
+            // }
             if (!values?.korean) {
               errors.korean = "ກະລຸນາປ້ອນຄໍາສັບພາສາເກົາຫຼີ";
             }
@@ -173,6 +173,7 @@ export default function AddWord() {
                               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer "
                               type="file"
                               ref={fileInputRef}
+                              accept="image/png, image/jpeg, image/jpg, image/webp"
                               onChange={handleFileChange}
                             />
                             <AiOutlineCloudUpload
@@ -209,10 +210,22 @@ export default function AddWord() {
                       touched={touched?.lao}
                     />
                     <InputField
+                      id="korean"
+                      name="korean"
+                      type="text"
+                      label="ພາສາເກົາຫຼີ"
+                      placeholder="ປ້ອນຄໍາສັບພາສາເກົາຫຼີ"
+                      value={values?.korean}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      errors={errors?.korean}
+                      touched={touched?.korean}
+                    />
+                    <InputField
                       id="thai"
                       name="thai"
                       type="text"
-                      label="ພາສາໄທ"
+                      label="ພາສາໄທ (ບໍ່ບັງຄັບ)"
                       placeholder="ປ້ອນຄໍາສັບພາສາໄທ"
                       value={values?.thai}
                       onBlur={handleBlur}
@@ -224,25 +237,13 @@ export default function AddWord() {
                       id="english"
                       name="english"
                       type="text"
-                      label="ພາສາອັງກິດ"
+                      label="ພາສາອັງກິດ (ບໍ່ບັງຄັບ)"
                       placeholder="ປ້ອນຄໍາສັບພາສາອັງກິດ"
                       value={values?.english}
                       onBlur={handleBlur}
                       onChange={handleChange}
                       errors={errors?.english}
                       touched={touched?.english}
-                    />
-                    <InputField
-                      id="korean"
-                      name="korean"
-                      type="text"
-                      label="ພາສາເກົາຫຼີ"
-                      placeholder="ປ້ອນຄໍາສັບພາສາເກົາຫຼີ"
-                      value={values?.korean}
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      errors={errors?.korean}
-                      touched={touched?.korean}
                     />
                   </div>
                 </div>
@@ -259,12 +260,7 @@ export default function AddWord() {
                   type="submit"
                   className="bg-[var(--main-color)] text-white p-2 w-full mt-10 rounded-md disabled:bg-blue-500 disabled:bg-opacity-70 disabled:cursor-not-allowed"
                   disabled={
-                    !isValid ||
-                    !imageUrl ||
-                    !values?.lao ||
-                    !values?.thai ||
-                    !values?.english ||
-                    !values?.korean
+                    !isValid || !imageUrl || !values?.lao || !values?.korean
                   }
                 >
                   {showLoader ? "ກຳລັງເພີ່ມ..." : "ເພີ່ມ"}

@@ -26,7 +26,7 @@ export default function KoreanToImage() {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen ">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
         <span className="text-red-500">{error}</span>
         <Link
           href="/"
@@ -39,7 +39,7 @@ export default function KoreanToImage() {
   }
 
   return (
-    <div className="flex flex-col my-8 min-h-screen bg-[var(--bg-color)] ">
+    <div className="flex flex-col min-h-screen my-8 ">
       <div className="px-[5%]  sm:px-[10%] md:px-[20%]">
         <div className="flex items-center justify-between mb-4">
           <Link
