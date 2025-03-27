@@ -21,7 +21,7 @@ import { WordListModel, WordListResponse } from "@/types";
 //icons
 import { MoveLeft } from "lucide-react";
 import { BiSolidEditAlt } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
+// import { AiFillDelete } from "react-icons/ai";
 
 export default function WordVocabList() {
   const [isLoading, setIsLoading] = useState(false);
@@ -54,10 +54,10 @@ export default function WordVocabList() {
     }
   };
 
-  const handleOpenDeleteModal = (id: string) => {
-    setDeleteId(id);
-    setIsModalOpen(true);
-  };
+  // const handleOpenDeleteModal = (id: string) => {
+  //   setDeleteId(id);
+  //   setIsModalOpen(true);
+  // };
 
   // ✅ Confirm Delete Function
   const handleConfirmDelete = async () => {
@@ -162,12 +162,12 @@ export default function WordVocabList() {
                     >
                       <BiSolidEditAlt size={20} />
                     </Link>
-                    <button
+                    {/* <button
                       onClick={() => handleOpenDeleteModal(word?._id)}
                       className="p-1 text-red-500 border border-gray-300 rounded-md hover:text-red-700"
                     >
                       <AiFillDelete size={20} />
-                    </button>
+                    </button> */}
                   </div>
                 </td>
               </tr>
