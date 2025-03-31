@@ -25,9 +25,9 @@ export default function AddWord() {
 
   const [imageUrl, setImageUrl] = useState<string>("");
 
-  const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // const [isCameraOpen, setIsCameraOpen] = useState(false);
+  // const videoRef = useRef<HTMLVideoElement | null>(null);
+  // const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [upLoading, setUpLoading] = useState(false);
   const [validateImage, setValidateImage] = useState(false);
@@ -61,50 +61,50 @@ export default function AddWord() {
   };
 
   // ✅ เปิดกล้อง
-  const openCamera = async () => {
-    setIsCameraOpen(true);
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    if (videoRef.current) videoRef.current.srcObject = stream;
-  };
+  // const openCamera = async () => {
+  //   setIsCameraOpen(true);
+  //   const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  //   if (videoRef.current) videoRef.current.srcObject = stream;
+  // };
 
-  // ✅ ปิดกล้อง
-  const closeCamera = () => {
-    setIsCameraOpen(false);
-    if (videoRef.current?.srcObject) {
-      (videoRef.current.srcObject as MediaStream)
-        .getTracks()
-        .forEach((track) => track.stop());
-    }
-  };
+  // // ✅ ปิดกล้อง
+  // const closeCamera = () => {
+  //   setIsCameraOpen(false);
+  //   if (videoRef.current?.srcObject) {
+  //     (videoRef.current.srcObject as MediaStream)
+  //       .getTracks()
+  //       .forEach((track) => track.stop());
+  //   }
+  // };
 
-  // 📸 ถ่ายรูปแล้วอัปโหลดทันที
-  const captureAndUploadImage = async () => {
-    if (!videoRef.current || !canvasRef.current) return;
+  // // 📸 ถ่ายรูปแล้วอัปโหลดทันที
+  // const captureAndUploadImage = async () => {
+  //   if (!videoRef.current || !canvasRef.current) return;
 
-    // 📷 ถ่ายภาพ
-    const context = canvasRef.current.getContext("2d");
-    if (context) {
-      context.drawImage(videoRef.current, 0, 0, 300, 200);
-      const capturedImage = canvasRef.current.toDataURL("image/png");
+  //   // 📷 ถ่ายภาพ
+  //   const context = canvasRef.current.getContext("2d");
+  //   if (context) {
+  //     context.drawImage(videoRef.current, 0, 0, 300, 200);
+  //     const capturedImage = canvasRef.current.toDataURL("image/png");
 
-      // 📤 อัปโหลด
-      setUpLoading(true);
-      closeCamera();
-      const blob = await fetch(capturedImage).then((res) => res.blob());
-      const formData = new FormData();
-      formData.append("image", blob, "captured-image.png");
-      try {
-        const response = await axios.post(`${API_URL}/file-upload`, formData);
-        setImageUrl(response.data.name);
-        setUpLoading(false);
-      } catch (error) {
-        console.error("Upload failed", error);
-      } finally {
-        setUpLoading(false);
-        // closeCamera(); // ปิดกล้องหลังจากอัปโหลดเสร็จ ✅
-      }
-    }
-  };
+  //     // 📤 อัปโหลด
+  //     setUpLoading(true);
+  //     closeCamera();
+  //     const blob = await fetch(capturedImage).then((res) => res.blob());
+  //     const formData = new FormData();
+  //     formData.append("image", blob, "captured-image.png");
+  //     try {
+  //       const response = await axios.post(`${API_URL}/file-upload`, formData);
+  //       setImageUrl(response.data.name);
+  //       setUpLoading(false);
+  //     } catch (error) {
+  //       console.error("Upload failed", error);
+  //     } finally {
+  //       setUpLoading(false);
+  //       // closeCamera(); // ปิดกล้องหลังจากอัปโหลดเสร็จ ✅
+  //     }
+  //   }
+  // };
 
   const handleSubmit = async (
     values: WordFormProps,
@@ -246,8 +246,7 @@ export default function AddWord() {
                       </>
                     )}
 
-                    {/* ปุ่มเปิดกล้อง */}
-                    {!isCameraOpen ? (
+                    {/* {!isCameraOpen ? (
                       <button
                         type="button"
                         onClick={openCamera}
@@ -283,77 +282,9 @@ export default function AddWord() {
                           </div>
                         </div>
                       </div>
-                    )}
+                    )} */}
                   </div>
-                  {/* <div className="w-full flex flex-col items-center rounded-[6px]">
-                    <p className="text-[#000000] font-[400] pb-2">ຮູບພາບ</p>
-                    {upLoading ? (
-                      <div className=" h-[200px] w-[200px] flex justify-center items-center rounded-md border-dashed border-2">
-                        <span className="loader"></span>
-                      </div>
-                    ) : (
-                      <>
-                        {imageUrl ? (
-                          <div className="relative w-full">
-                            <div className="w-full h-[200px] max-w-full flex justify-center rounded-md ">
-                              <Image
-                                src={IMAGE_LINK + imageUrl}
-                                width={200}
-                                height={200}
-                                alt="profile_image"
-                                className="object-cover rounded-md"
-                              />
-                            </div>
-                            <input
-                              className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer "
-                              type="file"
-                              ref={fileInputRef}
-                              onChange={handleFileChange}
-                            />
-                            {imageUrl ? (
-                              <div className="absolute flex flex-col items-center justify-center p-2 text-white transform -translate-x-1/2 -translate-y-1/2 rounded-md content top-1/2 left-1/2">
-                                <AiOutlineCloudUpload size={32} />
-                                <span className="text-sm font-[500] underline">
-                                  ປ່ຽນຮູບ
-                                </span>
-                              </div>
-                            ) : null}
-                          </div>
-                        ) : (
-                          <div
-                            className={` min-h-[200px] min-w-[200px] w-[200px] flex flex-col justify-center items-center rounded-md overflow-hidden relative ${
-                              validateImage
-                                ? "border-dashed border-2 border-red-600"
-                                : ""
-                            } border-2 border-dashed`}
-                          >
-                            <input
-                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer "
-                              type="file"
-                              ref={fileInputRef}
-                              accept="image/png, image/jpeg, image/jpg, image/webp"
-                              onChange={handleFileChange}
-                            />
-                            <AiOutlineCloudUpload
-                              className=" text-[var(--primary-color)]"
-                              size={32}
-                            />
-                            <p className=" text-[var(--primary-color)] text-base">
-                              ອັບໂຫຼດຮູບພາບ
-                            </p>
-                            <span className=" text-[10px] font-[300]">
-                              PNG, JPG,JPEG
-                            </span>
-                            {validateImage && (
-                              <span className="text-sm font-medium text-red-600 ">
-                                ກະລຸນາອັບໂຫລດຮູບພາບ
-                              </span>
-                            )}
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </div> */}
+
                   <div className="flex flex-col gap-4">
                     <InputField
                       id="lao"
